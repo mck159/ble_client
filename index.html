@@ -4,7 +4,6 @@
 <script src="bower_components/c3/c3.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="app/js/constants.js"></script>
-<script src="app/js/loadData.js"></script>
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
@@ -15,6 +14,7 @@
     <div id="chartHistorical"></div>
 </div>
 
+<h1>Now connected peripherals</h1>
 <div>
     <table id="connectedPeripheralsTable" class="table-bordered">
         <tr>
@@ -27,17 +27,18 @@
 
 </div>
 
-
-<script>
-    var chart = c3.generate({
-        bindto: '#chartHistorical',
-        data: {
-            columns: [
-                ['data1', 20, 50, 100, 400 ],
-                ['data2', 50, 20, 10, 40, 15, 25]
-            ]
-        }
-    });
-</script>
+<h1>Historical peripherals</h1>
+<div>
+    <table id="historicalPeripheralsTable" class="table-bordered">
+        <tr>
+            <th>Manufacturer</th>
+            <th>Model</th>
+            <th>IMEI</th>
+            <th>Connected at</th>
+            <th>Disconnected at</th>
+        </tr>
+    </table>
+    <script src="app/js/loadData.js"></script>
+</div>
 </body>
 </html>

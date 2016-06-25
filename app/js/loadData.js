@@ -9,14 +9,30 @@ var updateConnectedPeripherals = function() {
     });
 }
 
+var updateHistoricalPeripherals = function() {
+    var resultData={};
+    $.get(constants.serverUri + "/peripheralData/historical", function(data, status) {
+        console.log('got historical peripherals data');
+        updateHistoricalPeripheralsTable(data);
+
+    }).fail(function(data) {
+        alert("Error getting historical peripherals data");
+    });
+}
+
 
 var updateConnectedPeripheralsTable = function(connectedPeripherals) {
     console.log('updating connected peripherals table');
     $.each(connectedPeripherals, function(k, v) {
-        console.log(v);
         $("table#connectedPeripheralsTable").append(convertDataToTable(v));
     })
-    convertDataToTable();
+}
+
+var updateHistoricalPeripheralsTable = function(historicalPeripherals) {
+    console.log('updating historical peripherals table');
+    $.each(historicalPeripherals, function(k, v) {
+        $("table#historicalPeripheralsTable").append(convertDataToTable(v));
+    })
 }
 
 var convertDataToTable = function(data) {
@@ -29,4 +45,5 @@ var convertDataToTable = function(data) {
 }
 
 
-updateConnectedPeripherals()
+updateConnectedPeripherals();
+updateHistoricalPeripherals();
