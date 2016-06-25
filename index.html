@@ -3,11 +3,28 @@
 <script src="bower_components/angular/angular.js"></script>
 <script src="app/app.js"></script>
 <script src="app/controller/MainCtrl.js"></script>
+<script src="bower_components/d3/d3.min.js"></script>
+<script src="bower_components/c3/c3.js"></script>
+
+
 <body>
 
 <div ng-controller="mainCtrl">
     <h1>Hello {{test}}</h1>
+    <div id="chartHistorical"></div>
 </div>
 
+
+<script>
+    var chart = c3.generate({
+        bindto: '#chartHistorical',
+        data: {
+            columns: [
+                ['data1', 20, 50, 100, 400 ],
+                ['data2', 50, 20, 10, 40, 15, 25]
+            ]
+        }
+    });
+</script>
 </body>
 </html>
