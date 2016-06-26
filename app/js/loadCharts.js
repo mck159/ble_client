@@ -14,22 +14,30 @@ var loadAvgByModelChart = function(data) {
         bindto: '#chartAvgByManufacturer',
         data: {
             columns: [
-                dictToC3('averageConnectionTime', convertedData['avg'])['values'],
-                dictToC3('numberOfConnections', convertedData['count'])['values']
+                dictToC3('average connection time', convertedData['avg'])['values'],
+                dictToC3('number of connections', convertedData['count'])['values']
             ],
             axes: {
-                averageConnectionTime: 'y',
-                numberOfConnections: 'y2'
+                'average connection time': 'y',
+                'number of connections': 'y2'
             },
             types: {
-                averageConnectionTime: 'bar',
-                numberOfConnections: 'line'
+                'average connection time': 'bar',
+                'number of connections': 'line'
             }
         },
         axis: {
             x: {
                 type: 'category',
                 categories: dictToC3('average connection time', convertedData['avg'])['categories'],
+            },
+            y: {
+                label: 'sec',
+                show: true
+            },
+            y2: {
+                label: 'connections',
+                show: true,
             }
         }
     });
@@ -52,7 +60,10 @@ var loadConnectionByDatePerManufChart = function(data) {
         axis: {
             x: {
                 type: 'category',
-                categories: c3data['categories']
+                categories: c3data['categories'],
+            },
+            y: {
+                label: 'connections',
             }
         }
     });
@@ -74,7 +85,7 @@ var convertDataToAvgAndCountByManufacturer = function(data) {
     timeAvgByManufacturers = {};
     numberOfConnectionsManufacturers = {};
     for(key in connectionTimeByManufacturers) {
-        timeAvgByManufacturers[key] = avg(connectionTimeByManufacturers[key]);
+        timeAvgByManufacturers[key] = Math.ceil(avg(connectionTimeByManufacturers[key]) / 1000);
         numberOfConnectionsManufacturers[key] = connectionTimeByManufacturers[key].length;
     }
 
