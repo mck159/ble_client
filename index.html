@@ -7,38 +7,64 @@
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
+
 
 <body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">Ble client <dashboard></dashboard></a>
+        </div>
+    </div>
+</nav>
 
-<div ng-controller="mainCtrl">
-    <div id="chartHistorical"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Now connected</div>
+                <div class="panel-body">
+                    <table id="tableConnected" class="display">
+                        <thead>
+                        <tr>
+                            <th>Manufacturer</th>
+                            <th>Model</th>
+                            <th>IMEI</th>
+                            <th>ConnectedAt</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Connections history</div>
+                <div class="panel-body">
+                    <table id="tableHistorical" class="display">
+                        <thead>
+                        <tr>
+                            <th>Manufacturer</th>
+                            <th>Model</th>
+                            <th>IMEI</th>
+                            <th>ConnectedAt</th>
+                            <th>DisconnectedAt</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<h1>Now connected peripherals</h1>
-<div>
-    <table id="connectedPeripheralsTable" class="table">
-        <tr>
-            <th>Manufacturer</th>
-            <th>Model</th>
-            <th>IMEI</th>
-            <th>Connected at</th>
-        </tr>
-    </table>
-
-</div>
-
-<h1>Historical peripherals</h1>
-<div>
-    <table id="historicalPeripheralsTable" class="table">
-        <tr>
-            <th>Manufacturer</th>
-            <th>Model</th>
-            <th>IMEI</th>
-            <th>Connected at</th>
-            <th>Disconnected at</th>
-        </tr>
-    </table>
-    <script src="app/js/loadData.js"></script>
-</div>
+<script src="app/js/loadData.js"></script>
 </body>
 </html>

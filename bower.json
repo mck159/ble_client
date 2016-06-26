@@ -19,6 +19,8 @@
   "dependencies": {
     "jquery": "^3.0.0",
     "c3": "^0.4.11",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "datatables.net": "^1.10.12",
+    "datatables.net-dt": "^1.10.12"
   }
 }
