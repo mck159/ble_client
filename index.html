@@ -2,6 +2,7 @@
 <html lang="en-US">
 <script src="bower_components/d3/d3.min.js"></script>
 <script src="bower_components/c3/c3.js"></script>
+<link rel="stylesheet" href="bower_components/c3/c3.css" />
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="app/js/constants.js"></script>
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -66,7 +67,23 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Connections history</div>
+                <div class="panel-body">
+                    <div id="chartAvgByManufacturer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+
+        </div>
+    </div>
 </div>
-<script src="app/js/loadData.js"></script>
+<script src="app/js/loadTables.js"></script>
+<script src="app/js/loadCharts.js"></script>
 </body>
 </html>
