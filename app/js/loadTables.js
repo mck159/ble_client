@@ -1,4 +1,4 @@
-$('#tableConnected').DataTable({
+var tableConnected = $('#tableConnected').DataTable({
     ajax: {
         url: constants.serverUri + "/peripheralData/connected",
         dataSrc: ''
@@ -11,7 +11,7 @@ $('#tableConnected').DataTable({
     ]
 });
 
-$('#tableHistorical').DataTable({
+var tableHistorical = $('#tableHistorical').DataTable({
     ajax: {
         url: constants.serverUri + "/peripheralData/historical",
         dataSrc: ''
@@ -24,3 +24,8 @@ $('#tableHistorical').DataTable({
         { data: 'disconnectTime' }
     ]
 });
+
+setInterval( function () {
+    tableConnected.ajax.reload();
+    tableHistorical.ajax.reload();
+}, 10000);

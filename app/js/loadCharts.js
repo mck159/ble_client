@@ -37,15 +37,12 @@ var loadAvgByModelChart = function(data) {
 
 var loadConnectionByDatePerManufChart = function(data) {
     var convertedData = convertDataToConnectionByDatePerManuf(data);
-    console.log(convertedData);
     var chartData = []
     var c3data;
     for(key in convertedData) {
         c3data = dictToC3(key, convertedData[key]);
         chartData.push(c3data['values']);
     }
-    console.log(chartData);
-    console.log(c3data['categories']);
 
     var chart = c3.generate({
         bindto: '#chartConnectionByDatePerManuf',
@@ -126,9 +123,7 @@ var dictToC3 = function(dataName, data) {
         values.push(data[key]);
     }
 
-    // console.error(categories);
     values.unshift(dataName);
-    console.error(categories);
     return {
         'categories': categories,
         'values' : values
@@ -140,3 +135,9 @@ $.get(constants.serverUri + "/peripheralData/historical", function(data) {
     loadAvgByModelChart(data);
     loadConnectionByDatePerManufChart(data);
 });
+setInterval( function () {
+    $.get(constants.serverUri + "/peripheralData/historical", function(data) {
+        loadAvgByModelChart(data);
+        loadConnectionByDatePerManufChart(data);
+    });
+}, 10000);
