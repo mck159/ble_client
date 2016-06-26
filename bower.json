@@ -21,6 +21,7 @@
     "c3": "^0.4.11",
     "bootstrap": "^3.3.6",
     "datatables.net": "^1.10.12",
-    "datatables.net-dt": "^1.10.12"
+    "datatables.net-dt": "^1.10.12",
+    "datatables-bootstrap": "^1.0.0"
   }
 }

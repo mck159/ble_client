@@ -7,9 +7,11 @@
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+<!--<link rel="stylesheet" type="text/css" href="bower_components/datatables.net-dt/css/jquery.dataTables.css">-->
 
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="bower_components/datatables-bootstrap/3/dataTables.bootstrap.min.js"></script>
+<link rel="stylesheet" href="bower_components/datatables-bootstrap/3/dataTables.bootstrap.css">
 
 
 
@@ -28,7 +30,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Now connected</div>
                 <div class="panel-body">
-                    <table id="tableConnected" class="display">
+                    <table id="tableConnected" class="table table-striped table-bordered">
                         <thead>
                         <tr>
                             <th>Manufacturer</th>
@@ -47,7 +49,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Connections history</div>
                 <div class="panel-body">
-                    <table id="tableHistorical" class="display">
+                    <table id="tableHistorical" class="table table-striped table-bordered">
                         <thead>
                         <tr>
                             <th>Manufacturer</th>
