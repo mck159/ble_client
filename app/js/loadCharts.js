@@ -9,9 +9,6 @@ var avg = function(arr) {
 
 var loadAvgByModelChart = function(data) {
     var convertedData = convertDataToAvgAndCountByManufacturer(data);
-    console.log(convertedData);
-    console.info(dictToC3('number of connections', convertedData['avg'])['values']);
-    console.info(dictToC3('number of connections', convertedData['count'])['values'])
 
     var chart = c3.generate({
         bindto: '#chartAvgByManufacturer',
@@ -33,6 +30,32 @@ var loadAvgByModelChart = function(data) {
             x: {
                 type: 'category',
                 categories: dictToC3('average connection time', convertedData['avg'])['categories'],
+            }
+        }
+    });
+}
+
+var loadConnectionByDatePerManufChart = function(data) {
+    var convertedData = convertDataToConnectionByDatePerManuf(data);
+    console.log(convertedData);
+    var chartData = []
+    var c3data;
+    for(key in convertedData) {
+        c3data = dictToC3(key, convertedData[key]);
+        chartData.push(c3data['values']);
+    }
+    console.log(chartData);
+    console.log(c3data['categories']);
+
+    var chart = c3.generate({
+        bindto: '#chartConnectionByDatePerManuf',
+        data: {
+            columns: chartData,
+        },
+        axis: {
+            x: {
+                type: 'category',
+                categories: c3data['categories']
             }
         }
     });
@@ -65,6 +88,36 @@ var convertDataToAvgAndCountByManufacturer = function(data) {
     }
 }
 
+var convertDataToConnectionByDatePerManuf = function(data) {
+    var dates = [];
+    var manufacturers = [];
+    for(i = 0 ; i < data.length ; i++) {
+        var connectDate = data[i]['connectTime'].substring(0,10);
+        var manufacturer = data[i]['peripheralManufacturer'];
+        if(dates.indexOf(connectDate) == -1) {
+            dates.push(connectDate);
+        }
+        if(manufacturers.indexOf(manufacturer) == -1) {
+            manufacturers.push(manufacturer);
+        }
+    }
+    dates.sort();
+
+    var manufConnectionsPerDate = {}
+    for(i = 0 ; i < manufacturers.length ; i++) {
+        manufConnectionsPerDate[manufacturers[i]] = {};
+        for(j = 0 ; j < dates.length ; j++) {
+            manufConnectionsPerDate[manufacturers[i]][dates[j]] = 0;
+        }
+    }
+
+    for(i = 0 ; i < data.length ; i++) {
+        manufConnectionsPerDate[data[i]['peripheralManufacturer']][data[i]['connectTime'].substring(0,10)] += 1;
+    }
+
+    return manufConnectionsPerDate
+}
+
 var dictToC3 = function(dataName, data) {
     var categories = [];
     var values = [];
@@ -73,7 +126,9 @@ var dictToC3 = function(dataName, data) {
         values.push(data[key]);
     }
 
+    // console.error(categories);
     values.unshift(dataName);
+    console.error(categories);
     return {
         'categories': categories,
         'values' : values
@@ -83,4 +138,5 @@ var dictToC3 = function(dataName, data) {
 
 $.get(constants.serverUri + "/peripheralData/historical", function(data) {
     loadAvgByModelChart(data);
+    loadConnectionByDatePerManufChart(data);
 });
